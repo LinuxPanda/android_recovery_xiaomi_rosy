@@ -1,25 +1,11 @@
-# Device Tree for Xiaomi Redmi Note 4 & 4x (Mido)
+# Recovery tree for Xiaomi Redmi 5 (rosy)
 
-Kernel source: "https://github.com/TheScarastic/android_kernel_xiaomi_msm8953"
+Kernel source: "https://github.com/LinuxPanda/android_kernel_rosy"
 
-## Spec Sheet
+To build:
 
-| Feature                 | Specification                     |
-| :---------------------- | :-------------------------------- |
-| CPU                     | Octa-core 2.0 GHz Cortex-A53      |
-| Chipset                 | Qualcomm MSM8953 Snapdragon 625   |
-| GPU                     | Adreno 506                        |
-| Memory                  | 2/3/4 GB                          |
-| Shipped Android Version | 6.0.1                             |
-| Storage                 | 32/64 GB                          |
-| MicroSD                 | Up to 256 GB                      |
-| Battery                 | 4100 mAh (non-removable)          |
-| Dimensions              | 151 x 76 x 8.5 mm                 |
-| Display                 | 1920x1080 pixels, 5.5 (~401 PPI)  |
-| Rear Camera             | 13 MP, LED flash                  |
-| Front Camera            | 5 MP                              |
-| Release Date            | January 2017                      |
+`source build/envsetup.sh`
 
-## Device Picture
+`lunch omni_rosy-eng`
 
-![Redmi Note 4](http://i01.appmifile.com/webfile/globalimg/7/537557F3-A4F1-2490-E9D3-138B2A11DBF6.png "Redmi Note 4")
+`mka recoveryimage`
