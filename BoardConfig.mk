@@ -69,6 +69,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 # TWRP Configuration
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/twrp.fstab
 TARGET_RECOVERY_QCOM_RTC_FIX := true
+TW_USE_TOOLBOX := true
 
 # Disable Mouse Cursor
 TW_INPUT_BLACKLIST := "hbtp_vm"
