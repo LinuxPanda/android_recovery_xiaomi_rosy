@@ -87,6 +87,9 @@ TW_EXCLUDE_TWRPAPP := true
 # Busybox/Toolbox
 TW_USE_TOOLBOX := true
 
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND := true
+
 # Crypto
 TW_INCLUDE_CRYPTO := true
 
