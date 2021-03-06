@@ -2,36 +2,52 @@
 # The filesystem that contains the filesystem checker binary (typically /system) cannot
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
-/system         ext4      /dev/block/bootdevice/by-name/system               flags=display="System"
-/system_image   emmc      /dev/block/bootdevice/by-name/system               flags=backup=0
-/vendor         ext4      /dev/block/bootdevice/by-name/cust                 flags=display="Vendor";backup=1;wipeingui
-/vendor_image   emmc      /dev/block/bootdevice/by-name/cust                 flags=backup=0
-/data           ext4      /dev/block/bootdevice/by-name/userdata             flags=encryptable=footer
-/cache          ext4      /dev/block/bootdevice/by-name/cache                flags=display="Cache"
+# Boot/Bootloader
+/boot               emmc        /dev/block/bootdevice/by-name/boot          flags=backup=1;display="Boot";flashimg=1
+/aboot              emmc        /dev/block/bootdevice/by-name/aboot         flags=backup=1;display="Bootloader";flashimg=0
+/cmnlib             emmc        /dev/block/bootdevice/by-name/cmnlib        flags=backup=1;subpartitionof=/aboot
+/tz                 emmc        /dev/block/bootdevice/by-name/tz            flags=backup=1;subpartitionof=/aboot
+/rpm                emmc        /dev/block/bootdevice/by-name/rpm           flags=backup=1;subpartitionof=/aboot
+/keymaster          emmc        /dev/block/bootdevice/by-name/keymaster     flags=backup=1;subpartitionof=/aboot
+/devcfg             emmc        /dev/block/bootdevice/by-name/devcfg        flags=backup=1;subpartitionof=/aboot
 
-/recovery       emmc      /dev/block/bootdevice/by-name/recovery             flags=display="Recovery";backup=1
-/boot           emmc      /dev/block/bootdevice/by-name/boot                 flags=display="Boot"
-/misc           emmc      /dev/block/bootdevice/by-name/misc                 flags=display="Misc"
-/persist        ext4      /dev/block/bootdevice/by-name/persist              flags=display="Persist";backup=1
+# Cache
+/cache              ext4        /dev/block/bootdevice/by-name/cache         flags=backup=0;display="Cache";wipeduringfactoryreset;wipeingui
 
-/sdcard1        auto      /dev/block/mmcblk1p1                               flags=display="MicroSD";storage;wipeingui;removable
-/usb-otg        auto      /dev/block/sda1                                    flags=display="USB Storage";storage;wipeingui;removable
+# Data - FDE
+/data               ext4        /dev/block/bootdevice/by-name/userdata      flags=backup=1;display="Data";encryptable=footer;wipeingui
 
-# Bootloader
-/aboot		emmc	  /dev/block/bootdevice/by-name/aboot	             flags=backup=1;display="Bootloader"
-/cmnlib		emmc	  /dev/block/bootdevice/by-name/cmnlib	             flags=backup=1;subpartitionof=/aboot
-/tz		emmc	  /dev/block/bootdevice/by-name/tz	             flags=backup=1;subpartitionof=/aboot
-/rpm		emmc	  /dev/block/bootdevice/by-name/rpm	             flags=backup=1;subpartitionof=/aboot
-/keymaster	emmc	  /dev/block/bootdevice/by-name/keymaster	     flags=backup=1;subpartitionof=/aboot
-/devcfg		emmc	  /dev/block/bootdevice/by-name/devcfg	             flags=backup=1;subpartitionof=/aboot
+# EFS
+/efs1               emmc        /dev/block/bootdevice/by-name/modemst1      flags=backup=1;display="EFS"
+/efs2               emmc        /dev/block/bootdevice/by-name/modemst2      flags=backup=1;subpartitionof=/efs1
+/efsg               emmc        /dev/block/bootdevice/by-name/fsg           flags=backup=1;subpartitionof=/efs1
+/efsc               emmc        /dev/block/bootdevice/by-name/fsc           flags=backup=1;subpartitionof=/efs1
 
-# Modem backup/restore
-/firmware       vfat      /dev/block/bootdevice/by-name/modem                flags=display="Firmware";backup=1;mounttodecrypt
-/firmware_image emmc      /dev/block/bootdevice/by-name/modem                flags=display="Modem";flashimg=1
-/dsp		emmc	  /dev/block/bootdevice/by-name/dsp	             flags=backup=1;subpartitionof=/firmware
+# Firmware
+/firmware           vfat        /dev/block/bootdevice/by-name/modem         flags=backup=1;display="Firmware";mounttodecrypt
+/firmware_image     emmc        /dev/block/bootdevice/by-name/modem         flags=backup=0;display="Firmware Image";flashimg=1
+/dsp                emmc        /dev/block/bootdevice/by-name/dsp           flags=backup=1;subpartitionof=/firmware
 
-# EFS backup/restore
-/efs1		emmc	  /dev/block/bootdevice/by-name/modemst1	     flags=backup=1;display="EFS"
-/efs2		emmc	  /dev/block/bootdevice/by-name/modemst2	     flags=backup=1;subpartitionof=/efs1
-/efsg		emmc	  /dev/block/bootdevice/by-name/fsg	             flags=backup=1;subpartitionof=/efs1
-/efsc		emmc	  /dev/block/bootdevice/by-name/fsc	             flags=backup=1;subpartitionof=/efs1
+# Misc
+/misc               emmc        /dev/block/bootdevice/by-name/misc          flags=backup=1;display="Misc"
+
+# Persist
+/persist            ext4        /dev/block/bootdevice/by-name/persist       flags=backup=1;display="Persist"
+/persist_image      emmc        /dev/block/bootdevice/by-name/persist       flags=backup=0;display="Persist Image";flashimg=1
+
+# Recovery
+/recovery           emmc        /dev/block/bootdevice/by-name/recovery      flags=backup=0;display="Recovery";flashimg=1
+
+# System
+/system             ext4        /dev/block/bootdevice/by-name/system        flags=backup=1;display="System";wipeingui
+/system_image       emmc        /dev/block/bootdevice/by-name/system        flags=backup=0;display="System Image";flashimg=1
+
+# Vendor
+/vendor             ext4        /dev/block/bootdevice/by-name/cust          flags=backup=1;display="Vendor";wipeingui
+/vendor_image       emmc        /dev/block/bootdevice/by-name/cust          flags=backup=0;display="Vendor Image";flashimg=1
+
+
+
+# Storage
+/sdcard1    auto    /dev/block/mmcblk1p1    flags=display="MicroSD";removable;storage;wipeingui
+/usb-otg    auto    /dev/block/sda1         flags=display="USB OTG";removable;storage;wipeingui
