@@ -79,7 +79,6 @@ TW_USE_TOOLBOX := true
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_FBE := true
 
 # Display
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
@@ -105,7 +104,6 @@ TW_EXTRA_LANGUAGES := true
 
 # Storage
 RECOVERY_SDCARD_ON_DATA := true
-TW_IGNORE_MISC_WIPE_DATA := true
 
 # Time
 TARGET_RECOVERY_QCOM_RTC_FIX := true
