@@ -111,7 +111,7 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 TW_INCLUDE_NTFS_3G := true
 
 # Fstab
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/twrp.fstab
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 
 # Input
 TW_INPUT_BLACKLIST := "hbtp_vm"
