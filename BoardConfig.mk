@@ -77,6 +77,9 @@ BOARD_USES_QCOM_HARDWARE := true
 ### TWRP Configurations
 #
 
+# App
+TW_EXCLUDE_TWRPAPP := true
+
 # Busybox/Toolbox
 TW_USE_TOOLBOX := true
 
