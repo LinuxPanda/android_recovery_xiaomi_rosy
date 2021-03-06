@@ -101,6 +101,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/twrp.fstab
 
 # Input
 TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_EXCLUDE_DEFAULT_USB_INIT := true
 
 # Languages
 TW_DEFAULT_LANGUAGE := en
