@@ -89,6 +89,9 @@ TW_MAX_BRIGHTNESS := 2048
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_THEME := portrait_hdpi
 
+# EDL
+TW_HAS_EDL_MODE := false
+
 # Filesystem
 BOARD_SUPPRESS_SECURE_ERASE := true
 TW_INCLUDE_NTFS_3G := true
